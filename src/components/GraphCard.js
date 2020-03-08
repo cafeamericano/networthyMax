@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Bar, Line, Pie } from "react-chartjs-2";
 import DeleteSourceButton from "./DeleteSourceButton";
 
+const moment = require('moment');
+
 class GraphCard extends Component {
   constructor(props) {
     super(props);
@@ -23,16 +25,19 @@ class GraphCard extends Component {
     fetch(url)
       .then(response => response.json())
       .then(response => {
-        this.setState({
-          correspondingEntries: response
-        });
+            var formattedResponse = response;
+            formattedResponse.forEach(item => {
+                item.entry_date = moment(item.entry_date).format("MMM 'YY")
+            })
+            this.setState({
+                correspondingEntries: formattedResponse
+            });
       });
   };
 
   deleteCorrespondingSource = () => {
-    console.log("attempting to delete");
     let root = process.env.NODE_ENV === 'development' ? "http://localhost:9483" : "https://mfarmer5102-grandcentralapi.herokuapp.com";
-    let url = root + `NetworthyMax/api/sourcedetail/${this.props.data.uuid}`;
+    let url = root + `/NetworthyMax/api/liquidassets/${this.props.data.uuid}`;
     fetch(url, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" }

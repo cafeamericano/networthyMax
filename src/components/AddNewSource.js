@@ -33,7 +33,7 @@ class AddNewSource extends Component {
     if (this.state.source_name === "" || this.state.type === "") {
       alert("New sources require a name and a type.");
     } else {
-      let root = process.env.NODE_ENV === 'development' ? "http://localhost:9483" : "https://mfarmer5102-grandcentralapi.herokuapp.com";
+      let root = "https://central-api-node-2-6wevi67jwa-uc.a.run.app";
       let url;
       if (this.state.type === "Liquid Asset") {
         url = root + "/NetworthyMax/api/liquidassets";

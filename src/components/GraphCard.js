@@ -20,7 +20,7 @@ class GraphCard extends Component {
   };
 
   grabAllCorrespondingEntries = () => {
-    let root = process.env.NODE_ENV === 'development' ? "http://localhost:9483" : "https://mfarmer5102-grandcentralapi.herokuapp.com";
+    let root = "https://central-api-node-2-6wevi67jwa-uc.a.run.app";
     let url = root + `/NetworthyMax/api/sourcedetail/${this.props.data.uuid}`;
     fetch(url)
       .then(response => response.json())
@@ -36,7 +36,7 @@ class GraphCard extends Component {
   };
 
   deleteCorrespondingSource = () => {
-    let root = process.env.NODE_ENV === 'development' ? "http://localhost:9483" : "https://mfarmer5102-grandcentralapi.herokuapp.com";
+    let root = "https://central-api-node-2-6wevi67jwa-uc.a.run.app";
     let url = root + `/NetworthyMax/api/liquidassets/${this.props.data.uuid}`;
     fetch(url, {
       method: "DELETE",
